@@ -1,0 +1,7 @@
+/build
+*.json
+*.lock
+conanbuildinfo.cmake
+conanbuildinfo.txt
+conaninfo.txt
+.vscode
