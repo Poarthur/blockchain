@@ -20,13 +20,13 @@ void Sha256::make_sha256(const std::string_view value)
     {
         throw std::logic_error("Cannot create ssh256");
     }
-    _hash = result;
+    _hash.assign(result,sha256_size);
 }
 
 std::string Sha256::sha256_to_ascii() const
 {
     std::ostringstream stream;
-    std::for_each(_hash.cbegin(), _hash.cend() - 1, [&](auto& ch){
+    std::for_each(_hash.cbegin(), _hash.cend(), [&](auto& ch){
         if((int)(unsigned char)ch < 0x10) stream << 0;
         stream << std::hex << (int)(unsigned char)ch;});
     return stream.str();
