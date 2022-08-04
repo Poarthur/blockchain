@@ -1,19 +1,30 @@
-#include <iostream>
-#include <Sha256.h>
+#include <Blockchain.h>
+#include "menu_functions.h"
 
 int main()
 {
-    Block::Sha256 sha("Memphis");
-    std::string s = sha.sha256_to_ascii();
-    std::cout << s << std::endl;
-    for (int i = 0; i < 32; i++) {
-        std::cout << std::hex << (int)(unsigned char)s[i] << ' ';
+    Block::Blockchain blockchain;
+    Block::Key my_key;
+    my_key.generate();
+    my_key.save_private_key("my_private_key.md");
+    my_key.save_public_key("my_public_key.md");
+    functions funcs = init_menu_choices();
+    unsigned result = 0;
+    while(true)
+    {
+        show_menu();
+        std::cin >> result;
+        if(result > 5)
+        {
+            clear();
+            std::cout << "Wrong choice!" << std::endl;
+            continue;
+        }
+        if(result == 0) break;
+        funcs[result](blockchain,my_key);
+        std::cout << "Press any key" << std::endl;
+        std::cin.get();
+        std::cin.get();
+        clear();
     }
-    std::cout << std::endl;
-    std::string a = sha.sha256_from_ascii(s);
-    for (int i = 0; i < 32; i++) {
-        std::cout << std::hex << (int)(unsigned char)a[i] << ' ';
-    }
-    std::cout << std::endl;
-    std::cout << sha << std::endl;
 }

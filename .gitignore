@@ -5,4 +5,8 @@ conanbuildinfo.cmake
 conanbuildinfo.txt
 conaninfo.txt
 .vscode
-.pem
+*.pem
+*.block
+*.public
+*.private
+*.md

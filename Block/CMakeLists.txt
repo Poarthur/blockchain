@@ -4,7 +4,8 @@ Header.h
 Sha256.h
 Signature.h
 Key.h
-IBlock.h
+Blockchain.h
+User.h
 )
 set(sources
 Block.cpp
@@ -12,6 +13,8 @@ Header.cpp
 Sha256.cpp
 Signature.cpp
 Key.cpp
+Blockchain.cpp
+User.cpp
 )
 
 add_library(Block ${headers} ${sources})

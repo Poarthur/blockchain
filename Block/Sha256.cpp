@@ -37,6 +37,10 @@ std::string Sha256::sha256_from_ascii(const std::string_view buf) const
     const unsigned buf_size = buf.size();
     std::string txt;
     txt.reserve(sha256_size);
+    if(buf_size == 0)
+    {
+        return "";
+    }
     if(buf_size != sha256_size * 2)
     {
         throw std::logic_error("Wrong argument");
@@ -51,9 +55,9 @@ std::string Sha256::sha256_from_ascii(const std::string_view buf) const
     return txt;
 }
 
-Sha256::operator const std::string&()
+Sha256::operator std::string()
 {
-    return _hash;
+    return sha256_to_ascii();
 }
 
 std::ostream& operator<<(std::ostream& output, Sha256& sha)
@@ -62,8 +66,15 @@ std::ostream& operator<<(std::ostream& output, Sha256& sha)
     return output;
 }
 
-const std::string& Sha256::get_hash() const
+std::string Sha256::get_hash() const
 {
-    return _hash;
+    return sha256_to_ascii();
 }
+
+const Sha256& Sha256::set_hash(std::string_view hash)
+{
+    _hash = sha256_from_ascii(hash);
+    return *this;
+}
+
 }//namespace Block

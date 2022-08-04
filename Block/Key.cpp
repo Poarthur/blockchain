@@ -4,7 +4,7 @@
 #include <openssl/rsa.h>
 #include <openssl/pem.h>
 #include <openssl/bio.h>
-#include <iostream>
+#include <fstream>
 
 namespace Block
 {
@@ -45,4 +45,52 @@ void Key::generate(size_t key_size)
         throw;
     }
 }
+
+void Key::set_public_key(std::string_view key)
+{
+    _public_key.assign(key.cbegin(),key.size());
+}
+
+void Key::set_private_key(std::string_view key)
+{
+    _private_key.assign(key.cbegin(),key.size());
+}
+
+bool Key::load_public_key(std::string_view file_name)
+{
+    std::ifstream file(file_name);
+    if(!file) return false;
+    file >> _public_key;
+    return true;
+}
+
+bool Key::load_private_key(std::string_view file_name)
+{
+    std::ifstream file(file_name);
+    if(!file) return false;
+    file >> _private_key;
+    return true;
+}
+
+bool Key::save_public_key(std::string_view file_name)
+{
+    std::ofstream file(file_name);
+    if(!file) return false;
+    file << _public_key;
+    return true;
+}
+
+bool Key::save_private_key(std::string_view file_name)
+{
+    std::ofstream file(file_name);
+    if(!file) return false;
+    file << _private_key;
+    return true;
+}
+
+bool Key::is_empty() const noexcept
+{
+    return _public_key.empty() || _private_key.empty();
+}
+
 }//namespace Block

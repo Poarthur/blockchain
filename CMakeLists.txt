@@ -13,7 +13,7 @@ add_subdirectory(merklecpp)
 list(APPEND MY_LIBS Block)
 list(APPEND MY_LIBS merklecpp)
 
-add_executable(blockchain main.cpp)
+add_executable(blockchain main.cpp menu_functions.cpp menu_functions.h)
 target_link_libraries(blockchain PRIVATE ${CONAN_LIBS} ${MY_LIBS})
 target_include_directories(blockchain PRIVATE
                           "${PROJECT_BINARY_DIR}"
