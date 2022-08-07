@@ -1,5 +1,6 @@
 import subprocess
 import platform
+import shutil
 
 def install_cmake():
     if(platform.system() == "Windows"):
@@ -37,7 +38,9 @@ subprocess.run("cd ./build && cmake ..", shell=True)
 print("Build the project? (y/n): ")
 answer = input()
 if(answer == 'y'):
+    shutil.rmtree("./blockchain", ignore_errors=True)
     subprocess.run("cd ./build && cmake --build .", shell=True)
     subprocess.run("./build/bin/project_tests", shell=True)
+    shutil.rmtree("./blockchain", ignore_errors=True)
 else:
     exit()

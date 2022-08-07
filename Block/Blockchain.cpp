@@ -125,7 +125,7 @@ const User& Blockchain::find_user(std::string_view name) const
     const auto user = _users.find(User(name));
     if(user == _users.cend())
     {
-        throw std::logic_error("out of range");
+        throw std::logic_error("There are no user with such a name");
     }
     return *user;
 }

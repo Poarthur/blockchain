@@ -59,36 +59,12 @@ TEST(Blockchain, Mining)
 
     blockchain.get_current_block().mine();
     EXPECT_EQ(blockchain.get_current_block().validate(),true);
-    blockchain.add_block(blockchain.get_current_block());
-
-    msg = Block::Signature::create_message(tom,bob,10);
-    new_sign = sign.sign(msg,tom.get_key().get_private_key());
-    result = blockchain.new_transaction(tom,bob,10,new_sign);
-    EXPECT_EQ(result,true);
-    blockchain.get_current_block().mine();
-    blockchain.add_block(blockchain.get_current_block());
-
-    msg = Block::Signature::create_message(tom,bob,10);
-    new_sign = sign.sign(msg,tom.get_key().get_private_key());
-    result = blockchain.new_transaction(tom,bob,10,new_sign);
-    EXPECT_EQ(result,true);
-    blockchain.get_current_block().mine();
-    blockchain.add_block(blockchain.get_current_block());
-
-    msg = Block::Signature::create_message(tom,bob,10);
-    new_sign = sign.sign(msg,tom.get_key().get_private_key());
-    result = blockchain.new_transaction(tom,bob,10,new_sign);
-    EXPECT_EQ(result,true);
-    blockchain.get_current_block().mine();
-    blockchain.add_block(blockchain.get_current_block());
-
-    msg = Block::Signature::create_message(tom,bob,10);
-    new_sign = sign.sign(msg,tom.get_key().get_private_key());
-    result = blockchain.new_transaction(tom,bob,10,new_sign);
-    EXPECT_EQ(result,true);
-    std::cout << blockchain.get_readable_current_block();
     
-    std::cout << blockchain.get_readable_block(0);
+    blockchain.add_block(blockchain.get_current_block());
+    msg = Block::Signature::create_message(tom,bob,10);
+    new_sign = sign.sign(msg,tom.get_key().get_private_key());
+    result = blockchain.new_transaction(tom,bob,10,new_sign);
+    EXPECT_EQ(result,true);
 }
 
 TEST(Blockchain, ReadFiles)

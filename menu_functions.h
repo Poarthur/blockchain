@@ -1,30 +1,45 @@
 #pragma once
-#include <iostream>
-#include <map>
-#include <functional>
-#include <Blockchain.h>
+
+#include <array>
 #include <cstdlib>
+#include <iostream>
+#include <functional>
+#include <limits>
 
-using function = std::function<void(Block::Blockchain&, Block::Key&)>;
-using functions = std::map<unsigned,function>;
+#include <Blockchain.h>
 
-inline void clear()
+#define DECLARE_FUNC(f_name) void f_name(Block::Blockchain& blockchain)
+
+constexpr unsigned menu_count = 8u;
+using function = std::function<void(Block::Blockchain&)>;
+using functions = std::array<function,menu_count+1>;
+
+inline void clear_menu()
 {
-#ifdef _WIN32
-std::system("cls");
-#elif _WIN64
-std::system("cls");
+#if defined(_WIN32) || defined(_WIN64)
+    std::system("cls");
 #else
-std::system("clear");
+    std::system("clear");
 #endif
 }
 
-void show_menu();
+inline void pause_menu()
+{
+    std::cout << "\nPress Enter to continue..." << std::endl;
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin.get();
+}
 
-void add_transaction(Block::Blockchain& blockchain, Block::Key& my_key);
-void show_all_blocks(Block::Blockchain& blockchain, Block::Key& my_key);
-void show_one_block(Block::Blockchain& blockchain, Block::Key& my_key);
-void mine_the_block(Block::Blockchain& blockchain, Block::Key& my_key);
-void change_difficulty(Block::Blockchain& blockchain, Block::Key& my_key);
+unsigned show_menu();
+
+DECLARE_FUNC(add_user);
+DECLARE_FUNC(add_transaction);
+DECLARE_FUNC(add_coinbase_transaction);
+DECLARE_FUNC(show_all_users);
+DECLARE_FUNC(show_all_blocks);
+DECLARE_FUNC(show_one_block);
+DECLARE_FUNC(mine_the_block);
+DECLARE_FUNC(change_difficulty);
 
 functions init_menu_choices();
