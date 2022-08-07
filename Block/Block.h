@@ -29,8 +29,8 @@ public:
     void set_header(const Header& header);
     bool validate() const;
     void clear();
-    std::vector<Transaction> find_from(std::string_view from) const noexcept;
-    std::vector<Transaction> find_to(std::string_view to) const noexcept;
+    std::vector<Transaction> find_from(std::string_view from) const;
+    std::vector<Transaction> find_to(std::string_view to) const;
     const Transaction& operator[](size_t i) const;
     friend std::ostream& operator<<(std::ostream& output, const Block& block);
     friend std::istream& operator>>(std::istream& input, Block& block);

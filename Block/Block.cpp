@@ -80,7 +80,7 @@ void Block::add_transaction(std::string_view from, std::string_view to, double a
     _transactions.emplace_back(from,to,amount,sig);
 }
 
-std::vector<Block::Transaction> Block::find_from(std::string_view from) const noexcept
+std::vector<Block::Transaction> Block::find_from(std::string_view from) const
 {
     std::vector<Block::Transaction> results;
     for(const auto& i : _transactions)
@@ -93,7 +93,7 @@ std::vector<Block::Transaction> Block::find_from(std::string_view from) const no
     return results;
 }
 
-std::vector<Block::Transaction> Block::find_to(std::string_view to) const noexcept
+std::vector<Block::Transaction> Block::find_to(std::string_view to) const
 {
     std::vector<Block::Transaction> results;
     for(const auto& i : _transactions)
