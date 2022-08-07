@@ -1,11 +1,11 @@
 import subprocess
 import platform
 import shutil
-import webbrowser
 
 def install_cmake():
     if(platform.system() == "Windows"):
-        webbrowser.open('https://cmake.org/download/')
+        #if your pip app dir didn't add to the PATH this won't work
+        subprocess.run("pip3 install cmake", shell=True)
     if(platform.system() == "Linux"):
         subprocess.run("sudo apt-get -y install cmake", shell=True)
     if(platform.system() == "Darwin"):
@@ -29,7 +29,6 @@ except subprocess.CalledProcessError:
     print("Install it right now? (y/n): ")
     answer = input()
     if(answer == 'y'):
-        webbrowser.open('https://conan.io/downloads.html')
         subprocess.run("pip3 install conan", shell=True)
     else:
         exit()
