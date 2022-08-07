@@ -76,6 +76,6 @@ Transaction completed successfully!
 4. Didn't connect codestyle alignment tools
 5. Didn't connect cppcheck
 6. Didn't include header precompilation
-7. Didn't add CI
-Merkel's tree was left as a rudement, I also wanted to add it at first
+7. Didn't add CI<br />
+Merkel's tree was left as a rudement, I also wanted to add it at first<br />
 If any of this is needed, I can add
