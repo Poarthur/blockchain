@@ -1,0 +1,7 @@
+[requires]
+openssl/3.0.5
+gtest/cci.20210126
+nlohmann_json/3.10.5
+
+[generators]
+cmake
