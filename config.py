@@ -1,9 +1,13 @@
 import subprocess
 import platform
 import shutil
+import os
+import sys
 
 def install_cmake():
     if(platform.system() == "Windows"):
+        path = os.path.dirname(sys.executable)
+        os.system(path + "/Tools/scripts/win_add2path.py")
         subprocess.run("pip3 install cmake", shell=True)
     if(platform.system() == "Linux"):
         subprocess.run("sudo apt-get -y install cmake", shell=True)
