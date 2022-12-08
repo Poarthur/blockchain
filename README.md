@@ -1,5 +1,5 @@
 # Blockchain
-Test task solution
+Test chain
 
 ## Compiling and building
 In order to compile and build the solution, you can simply run **config.py** using the command:<br />
